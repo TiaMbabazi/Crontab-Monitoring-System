@@ -35,7 +35,7 @@ This project is a  system that monitors cron jobs on a local machine, tracks the
 Any successful cron job should include a line like this in its definition:
 
 ```bash
-curl -X POST "http://localhost:8000/?name=backup_script"
+ curl -X POST "http://localhost:8000/?name=backup_script"
 
 This triggers the FastAPI server to log that the job ran successfully
 
