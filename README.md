@@ -1,14 +1,14 @@
 # Crontab-Monitoring-System
 This project is a  system that monitors cron jobs on a local machine, tracks their execution status, and logs this information into a SQLite database. It also supports integrating results into Power BI dashboards for visualization.
 
-**What It Does**
+## What It Does
 - Reads all cron jobs scheduled on a user’s system using python-crontab
 - Stores metadata (like next scheduled run and job comments) in a SQLite database
 - Logs successful job executions via POST requests to a FastAPI endpoint
 - Runs in Docker for easy automation and deployment
 - Data can be connected to Power BI for monitoring job frequency, failures, and timing trends
 
-**How It Works**
+## How It Works
 
 **Cron Metadata Extraction (access_crontab.py)**
 
@@ -30,15 +30,19 @@ This project is a  system that monitors cron jobs on a local machine, tracks the
 - Success/failure trend analysis
 - Runtime duration and anomalies
 
-**Example POST Request and Job**
+## Example POST Request and Job
 
 Any successful cron job should include a line like this in its definition:
-`curl -X POST "http://localhost:8000/?name=backup_script"`
+
+```bash
+curl -X POST "http://localhost:8000/?name=backup_script"
+
 This triggers the FastAPI server to log that the job ran successfully
 
 For example, a full job with a POST request and the comment for the database would look like:
 
-`0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup`
+```bash
+0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup
 
 **Breakdown:**
 
@@ -53,13 +57,14 @@ For example, a full job with a POST request and the comment for the database wou
 `# DailyBackup `-  The cron comment used for metadata tracking (captured by access_crontab.py)
 
 
-**Running with Docker**
+## Running with Docker
 
 To containerize and run the app:
 
-`docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cronjob`
+```bash
+docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cronjob
 
-**Requirements**
+## Requirements
 
 - Python 3.8+
 - SQLite
@@ -71,8 +76,9 @@ To containerize and run the app:
 
 **Install dependencies:**
 
-`pip install fastapi uvicorn pandas python-crontab`
+```bash
+pip install fastapi uvicorn pandas python-crontab
 
-**Future Improvements**
+## Future Improvements
 - Build a visual dashboard as a frontend
 - Add alerting (e.g., email or Slack) for failed or missed jobs
