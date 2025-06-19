@@ -1,5 +1,5 @@
 # Crontab-Monitoring-System
-This project is a lightweight system that monitors cron jobs on a local machine, tracks their execution status, and logs this information into a SQLite database. It also supports integrating results into Power BI dashboards for visualization.
+This project is a  system that monitors cron jobs on a local machine, tracks their execution status, and logs this information into a SQLite database. It also supports integrating results into Power BI dashboards for visualization.
 
 **What It Does**
 - Reads all cron jobs scheduled on a user’s system using python-crontab
@@ -54,11 +54,13 @@ For example, a full job with a POST request and the comment for the database wou
 
 
 **Running with Docker**
+
 To containerize and run the app:
 
 `docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cronjob`
 
 **Requirements**
+
 - Python 3.8+
 - SQLite
 - FastAPI
