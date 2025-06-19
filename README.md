@@ -40,11 +40,16 @@ For example, a full job with a POST request and the comment for the database wou
 `0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup`
 
 Breakdown:
-`0 2 * * *` → runs every day at 2:00 AM
-`/home/user/scripts/backup.sh `→ your actual script or task
-`&& curl -X POST ... `→ sends a signal to the FastAPI server once the script runs successfully
-`?name=DailyBackup` → the job name logged in the database (used by the API)
-`# DailyBackup `→ The cron comment used for metadata tracking (captured by access_crontab.py)
+
+`0 2 * * *` - runs every day at 2:00 AM
+
+`/home/user/scripts/backup.sh ` - your actual script or task
+
+`&& curl -X POST ... ` - sends a signal to the FastAPI server once the script runs successfully
+
+`?name=DailyBackup`  - the job name logged in the database (used by the API)
+
+`# DailyBackup `-  The cron comment used for metadata tracking (captured by access_crontab.py)
 
 
 **Running with Docker**
