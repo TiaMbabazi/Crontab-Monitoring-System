@@ -31,6 +31,7 @@ This project is a lightweight system that monitors cron jobs on a local machine,
 - Runtime duration and anomalies
 
 **Example POST Request and Job**
+
 Any successful cron job should include a line like this in its definition:
 `curl -X POST "http://localhost:8000/?name=backup_script"`
 This triggers the FastAPI server to log that the job ran successfully
@@ -39,7 +40,7 @@ For example, a full job with a POST request and the comment for the database wou
 
 `0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup`
 
-Breakdown:
+**Breakdown:**
 
 `0 2 * * *` - runs every day at 2:00 AM
 
