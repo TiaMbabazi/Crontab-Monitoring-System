@@ -11,16 +11,19 @@ This project is a lightweight system that monitors cron jobs on a local machine,
 **How It Works**
 
 **Cron Metadata Extraction (access_crontab.py)**
+
 - Reads the user’s crontab entries
 - Extracts the command/comment and next run time
 - Stores only new or unlogged jobs in the SQLite database under a table called Crontab
 
  **Job Run Logging API (main.py)**
+ 
 - Hosts a FastAPI server that listens for POST / requests
 - When a cron job executes, it sends a POST with its name to this endpoint
 - The job name and execution timestamp are logged in the AccessTime table
 
 **Data Visualization (Power BI)**
+
 - Connect Power BI to the SQLite database
 - Create visualizations like:
 - Job frequency over time
@@ -33,6 +36,7 @@ Any successful cron job should include a line like this in its definition:
 This triggers the FastAPI server to log that the job ran successfully
 
 For example, a full job with a POST request and the comment for the database would look like:
+
 `0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup`
 
 Breakdown:
@@ -45,6 +49,7 @@ Breakdown:
 
 **Running with Docker**
 To containerize and run the app:
+
 `docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cronjob`
 
 **Requirements**
@@ -57,6 +62,7 @@ To containerize and run the app:
 - Power BI (for visualization)
 
 **Install dependencies:**
+
 `pip install fastapi uvicorn pandas python-crontab`
 
 **Future Improvements**
