@@ -34,15 +34,14 @@ This project is a  system that monitors cron jobs on a local machine, tracks the
 
 Any successful cron job should include a line like this in its definition:
 
-```bash
- curl -X POST "http://localhost:8000/?name=backup_script"
+
+`curl -X POST "http://localhost:8000/?name=backup_script"`
 
 This triggers the FastAPI server to log that the job ran successfully
 
 For example, a full job with a POST request and the comment for the database would look like:
 
-```bash
-0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup
+`0 2 * * * /home/user/scripts/backup.sh && curl -X POST "http://localhost:8000/?name=DailyBackup" # DailyBackup`
 
 **Breakdown:**
 
@@ -61,8 +60,7 @@ For example, a full job with a POST request and the comment for the database wou
 
 To containerize and run the app:
 
-```bash
-docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cronjob
+`docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cronjob`
 
 ## Requirements
 
@@ -76,8 +74,8 @@ docker run -it --publish 8000:8000 --mount "type=bind,src=$PWD,target=/src" cron
 
 **Install dependencies:**
 
-```bash
-pip install fastapi uvicorn pandas python-crontab
+
+`pip install fastapi uvicorn pandas python-crontab`
 
 ## Future Improvements
 - Build a visual dashboard as a frontend
